@@ -2,6 +2,7 @@ package com.microserviciovalidacion.services.impl;
 
 import com.microserviciovalidacion.dto.UsuarioDto;
 import com.microserviciovalidacion.services.UsuarioService;
+import com.microserviciovalidacion.web.client.UsuarioClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     String url;
 
     private final RestTemplate restTemplate;
+    private final UsuarioClient usuarioClient;
 
     @Override
     public List<UsuarioDto> getAllUsuario() {
@@ -31,5 +33,15 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public UsuarioDto createUser(UsuarioDto usuarioDto) {
         return restTemplate.postForObject(url.concat("/create"),usuarioDto,UsuarioDto.class);
+    }
+
+    @Override
+    public List<UsuarioDto> getAllUsuarioOpenFeing() {
+        return usuarioClient.getAllUsuarios();
+    }
+
+    @Override
+    public UsuarioDto createUserOpengFeing(UsuarioDto usuarioDto) {
+        return usuarioClient.createUsuarios(usuarioDto);
     }
 }

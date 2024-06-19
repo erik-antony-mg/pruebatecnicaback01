@@ -29,4 +29,16 @@ public class UsuarioController {
     ResponseEntity<UsuarioDto> createUsuario(@RequestBody @Validated UsuarioDto usuarioDto){
         return new ResponseEntity<>(usuarioService.createUser(usuarioDto),HttpStatus.CREATED);
     }
+
+    @GetMapping("/feing")
+    ResponseEntity<List<UsuarioDto>> getAllUserFeing(){
+        if (usuarioService.getAllUsuarioOpenFeing()==null){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return  ResponseEntity.ok(usuarioService.getAllUsuarioOpenFeing());
+    }
+    @PostMapping("/feing/create")
+    ResponseEntity<UsuarioDto> createUsuarioFeing(@RequestBody @Validated UsuarioDto usuarioDto){
+        return new ResponseEntity<>(usuarioService.createUserOpengFeing(usuarioDto),HttpStatus.CREATED);
+    }
 }

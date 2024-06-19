@@ -10,4 +10,6 @@ public interface UsuarioService {
 
     List<UsuarioDto> getAllUsuario();
     UsuarioDto createUser(UsuarioDto usuarioDto);
+    List<UsuarioDto> getAllUsuarioOpenFeing();
+    UsuarioDto createUserOpengFeing(UsuarioDto usuarioDto);
 }
